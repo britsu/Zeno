@@ -1,15 +1,140 @@
-
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ZENO - Sua grana sob controle.</title>
+    <title>ZENO – Sua grana sob controle</title>
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <!-- Conteúdo omitido para brevidade -->
+    <header>
+        <div class="container">
+            <h1>ZENO</h1>
+            <p class="slogan">Sua grana sob controle.</p>
+        </div>
+    </header>
+
+    <nav class="navbar">
+        <div class="container">
+            <button class="nav-btn active" data-view="dashboard">📊 Dashboard</button>
+            <button class="nav-btn" data-view="add-transaction">➕ Adicionar</button>
+            <button class="nav-btn" data-view="statement">📄 Extrato</button>
+        </div>
+    </nav>
+
+    <main class="container">
+        <!-- Seção Dashboard -->
+        <section id="dashboard" class="view active">
+            <div class="balance-card">
+                <h2>Saldo Atual</h2>
+                <p class="balance-amount" id="total-balance">R$ 0,00</p>
+            </div>
+
+            <div class="summary-cards">
+                <div class="summary-card income">
+                    <h3>Entradas</h3>
+                    <p id="total-income">R$ 0,00</p>
+                </div>
+                <div class="summary-card expense">
+                    <h3>Saídas</h3>
+                    <p id="total-expense">R$ 0,00</p>
+                </div>
+            </div>
+
+            <div class="goal-card">
+                <h3>Meta Mensal</h3>
+                <div class="progress-container">
+                    <div class="progress-bar" id="goal-progress"></div>
+                </div>
+                <p id="goal-text">R$ 0,00 de R$ 500,00</p>
+            </div>
+        </section>
+
+        <!-- Seção Adicionar Transação -->
+        <section id="add-transaction" class="view">
+            <h2>Nova Transação</h2>
+            <form id="transaction-form">
+                <div class="form-group">
+                    <label for="amount">Valor (R$)</label>
+                    <input type="number" id="amount" step="0.01" min="0" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="type">Tipo</label>
+                    <select id="type" required>
+                        <option value="">Selecione...</option>
+                        <option value="income">Entrada</option>
+                        <option value="expense">Saída</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="category">Categoria</label>
+                    <select id="category" required>
+                        <option value="">Selecione...</option>
+                        <option value="salario">Salário</option>
+                        <option value="freelance">Freelance</option>
+                        <option value="investimentos">Investimentos</option>
+                        <option value="alimentacao">Alimentação</option>
+                        <option value="transporte">Transporte</option>
+                        <option value="lazer">Lazer</option>
+                        <option value="moradia">Moradia</option>
+                        <option value="outros">Outros</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="date">Data</label>
+                    <input type="date" id="date" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="description">Descrição (opcional)</label>
+                    <input type="text" id="description">
+                </div>
+
+                <button type="submit" class="btn">Adicionar Transação</button>
+            </form>
+        </section>
+
+        <!-- Seção Extrato -->
+        <section id="statement" class="view">
+            <h2>Extrato</h2>
+            
+            <div class="filters">
+                <div class="form-group">
+                    <label for="filter-type">Filtrar por tipo</label>
+                    <select id="filter-type">
+                        <option value="all">Todos</option>
+                        <option value="income">Entradas</option>
+                        <option value="expense">Saídas</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="filter-category">Filtrar por categoria</label>
+                    <select id="filter-category">
+                        <option value="all">Todas</option>
+                        <option value="salario">Salário</option>
+                        <option value="freelance">Freelance</option>
+                        <option value="investimentos">Investimentos</option>
+                        <option value="alimentacao">Alimentação</option>
+                        <option value="transporte">Transporte</option>
+                        <option value="lazer">Lazer</option>
+                        <option value="moradia">Moradia</option>
+                        <option value="outros">Outros</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="transactions-list" id="transactions-container">
+                <!-- Transações serão inseridas aqui via JavaScript -->
+                <p class="empty-message">Nenhuma transação registrada ainda.</p>
+            </div>
+        </section>
+    </main>
+
     <script src="app.js"></script>
 </body>
 </html>
